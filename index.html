@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Log in</title>
+</head>
+
+<body>
+    <main class="flex justify-center">
+        <div class="mockup-phone">
+            <div class="mockup-phone-camera"></div>
+            <div class="mockup-phone-display text-white grid place-content-center relative">
+
+                <div class="hero min-h-[2120px] min-w-[990px] bg-base-200 flex flex-col items-center justify-center">
+
+                    <!-- Logo and Background Circle --> 
+                    <div class="flex flex-col items-center mb-6 -mt-10 z-10">
+                        <img src="assets/bg.png" alt="Background Circle" class="w-54 h-42 flex flex-col items-center mb-2 -mt-10 z-10 transform translate-y-20">
+                        <img src="assets/Group.png" alt="Logo" class="w-10 h-10 -mt-16">
+                    </div>
+                    
+                    <!-- Card -->
+                    <div class="card bg-base-100 w-[350px] shadow-2xl mt-4">
+                        <div class="card-body">
+
+                            <fieldset class="fieldset space-y-4">
+                                <label class="label text-black font-semibold text-sm">Mobile number</label>
+                                <input id="phone-number" type="email" class="input input-bordered text-gray-700" placeholder="Enter your number" />
+
+                                <label class="label text-black font-semibold text-sm">4 digit pin</label>
+                                <input type="password" class="input input-bordered text-gray-700" placeholder="Enter 4 digit pin" />
+
+                                <button id="button-login" class="btn bg-[#0874F2] hover:bg-[#0864d2] rounded-3xl text-white my-4 mt-4">Login</button>
+                            </fieldset>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/login.js"></script>
+</body>
+</html>
