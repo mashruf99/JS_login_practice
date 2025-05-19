@@ -7,16 +7,37 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <title>home</title>
+    <style>
+        /* Custom scrollbar styling */
+        .scrollable-form {
+            max-height: 350px;
+            /* Adjust this value as needed */
+            overflow-y: auto;
+        }
+
+        /* Optional: Style the scrollbar */
+        .scrollable-form::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .scrollable-form::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .scrollable-form::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+    </style>
 </head>
 
 <body>
     <main class="flex justify-center">
         <div class="mockup-phone">
             <div class="mockup-phone-camera"></div>
-            <div class="mockup-phone-display bg-white text-white grid place-content-center relative">
+            <div class="mockup-phone-display bg-white text-white relative">
 
-
-                <div class="pt-[40px] justify-center rounded-md bg-white shadow-xl ">
+                <div class="pt-[60.5px] justify-center rounded-md bg-white shadow-xl ">
 
                     <div class="w-full max-w-md mx-auto h-[84px] px-4 flex items-center justify-between">
                         <!-- Balance Info -->
@@ -44,7 +65,7 @@
                 </div>
 
                 <!-- Page Content -->
-                <div class="pt-[40px] max-w-md mx-auto px-4">
+                <div class="max-w-md mx-auto px-4 pb-4 pt-[40px]">
 
                     <!-- Welcome Message -->
                     <div class="bg-white rounded-xl p-4 mb-4 shadow-sm">
@@ -106,22 +127,37 @@
                         </div>
                     </div>
 
-                    <!-- Latest Payment Section -->
-                    <div class="bg-white rounded-xl p-4 shadow-sm py-42.5">
+                    <!-- Latest Payment Section - Made scrollable -->
+                    <div class="bg-white rounded-2xl p-4 shadow-sm  scrollable-form">
+                        <legend class="fieldset-legend text-[#080808] text-xl font-semibold">Transfer Money</legend>
+                        <div class="pt-6">
 
+                            <fieldset class="fieldset bg-white border-base-300 rounded-box w-xs border p-1">
+
+                                <label class="label text-black">User Account Number</label>
+                                <input type="text" class="input w-full text-gray-400"
+                                    placeholder="Enter 11 digit account number" />
+
+                                <label class="label text-black">Amount</label>
+                                <input type="text" class="input w-full text-gray-400"
+                                    placeholder="Add Amount to withdraw" />
+
+                                <label class="label text-black">Pin Number</label>
+                                <input type="text" class="input w-full text-gray-400"
+                                    placeholder="Enter 4 digit pin number" />
+
+
+                                <button id="button-login"
+                                    class="btn bg-[#0874F2] hover:bg-[#0864d2] rounded-3xl text-white my-4 mt-4 w-full">ADD
+                                    Money</button>
+                            </fieldset>
+
+                        </div>
                     </div>
-
-
-
-                    <div>
-
-                    </div>
-
                 </div>
             </div>
         </div>
     </main>
-
 </body>
 
 </html>
