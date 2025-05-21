@@ -5,9 +5,10 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error("Transaction history container not found!");
         return;
     }
+
     const displayTransaction = (data) => {
         const transactionElement = document.createElement('div');
-        transactionElement.className = 'p-3 bg-gray-50 rounded-lg mb-2'; // Added mb-2 for spacing
+        transactionElement.className = 'p-3 bg-gray-50 rounded-lg';
         transactionElement.innerHTML = `
             <div class="flex justify-between items-center">
                 <div>
@@ -26,7 +27,14 @@ document.addEventListener("DOMContentLoaded", () => {
     savedTransactions.forEach(transaction => {
         displayTransaction(transaction);
     });
+
     window.addEventListener('transactionComplete', (e) => {
         displayTransaction(e.detail);
+        let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+        transactions.unshift(e.detail);
+        if (transactions.length > 10) {
+            transactions = transactions.slice(0, 10);
+        }
+        localStorage.setItem('transactions', JSON.stringify(transactions));
     });
 });

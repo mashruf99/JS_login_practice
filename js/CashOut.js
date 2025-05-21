@@ -1,10 +1,6 @@
-// Load existing balance from localStorage or initialize to 45000
 let balance = parseFloat(localStorage.getItem("balance")) || 45000;
-
-// Show the current balance on page load
 document.getElementById("total-balance").innerText = balance;
 
-// Handle form submission
 document.getElementById("moneyForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
@@ -13,10 +9,8 @@ document.getElementById("moneyForm").addEventListener("submit", function(e) {
     const agentNumber = document.getElementById("agentNumber").value;
     const errorElement = document.getElementById("NOMONEY");
 
-    // Reset error message
     errorElement.classList.add("hidden");
 
-    // Basic validation
     if (isNaN(amount)) {
         errorElement.textContent = "Please enter a valid amount";
         errorElement.classList.remove("hidden");
@@ -46,15 +40,12 @@ document.getElementById("moneyForm").addEventListener("submit", function(e) {
         errorElement.classList.remove("hidden");
         return;
     }
-
-    // Hardcoded PIN check (for demo purposes)
     if (pin !== "1234") {
         errorElement.textContent = "Incorrect PIN";
         errorElement.classList.remove("hidden");
         return;
     }
 
-    // Update balance
     balance -= amount;
     localStorage.setItem("balance", balance);
     document.getElementById("total-balance").innerText = balance;
@@ -62,16 +53,34 @@ document.getElementById("moneyForm").addEventListener("submit", function(e) {
     document.getElementById("PIN").value = "";
     document.getElementById("agentNumber").value = "";
 
-    // Show success message
     errorElement.textContent = `Successfully withdrew $${amount} from your account!`;
     errorElement.classList.remove("hidden");
     errorElement.classList.remove("text-red-500");
     errorElement.classList.add("text-green-500");
 
-    // Reset to error styling after 3 seconds
     setTimeout(function() {
         errorElement.classList.add("hidden");
         errorElement.classList.remove("text-green-500");
         errorElement.classList.add("text-red-500");
     }, 3000);
+
+    // After successful transaction now I'll add the transaction to the history
+    const transactionData = {
+        type: "Cash out",  
+        amount: amount,
+        date: new Date().toLocaleString()
+    };
+
+    let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+    transactions.unshift(transactionData);
+    if (transactions.length > 10) {
+        transactions = transactions.slice(0, 10);
+    }
+    
+    localStorage.setItem('transactions', JSON.stringify(transactions));
+    const transactionEvent = new CustomEvent('transactionComplete', {
+        detail: transactionData
+    });
+    window.dispatchEvent(transactionEvent);
+    document.getElementById("moneyForm").reset();
 });
